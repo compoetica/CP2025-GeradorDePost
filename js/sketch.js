@@ -59,12 +59,12 @@ P5Capture.setDefaultOptions({
 let debug = false;
 
 function preload() {
-  fonte = loadFont("../assets/IBMPlexMono-Medium.otf");
-  texto_A = loadStrings("../assets/CP-2025-Instagram-Post-Apresentação-Parte-01.txt");
-  texto_B = loadStrings("../assets/CP-2025-Instagram-Post-Apresentação-Parte-02.txt");
+  fonte = loadFont("https://compoetica.github.io/CP2025-GeradorDePost/assets/IBMPlexMono-Medium.otf");
+  texto_A = loadStrings("https://compoetica.github.io/CP2025-GeradorDePost/assets/CP-2025-Instagram-Post-Apresentação-Parte-01.txt");
+  texto_B = loadStrings("https://compoetica.github.io/CP2025-GeradorDePost/assets/CP-2025-Instagram-Post-Apresentação-Parte-02.txt");
   
   for (const m in mascaras) {
-    mascaras[m] = loadImage("../assets/" + mascaras[m]);
+    mascaras[m] = loadImage("https://compoetica.github.io/CP2025-GeradorDePost/assets/" + mascaras[m]);
   }
   mascara = mascaras.vermelho;
 }
