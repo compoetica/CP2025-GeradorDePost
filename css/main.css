@@ -1,0 +1,114 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  line-height: 1em;
+  font-family: "IBM Plex Mono", monospace, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+
+}
+
+canvas {
+  box-shadow: 1rem 1rem 0.6rem rgba(0, 0, 0, 0.5);
+}
+
+canvas {
+  height: 80vh !important;
+  width: auto !important;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+#canvas-container { 
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+#interface {
+  /* position: fixed;
+  left: 0;
+  top: 0; */
+  padding: 2rem;
+  width: 25rem;
+}
+
+#interface hr {
+  margin: 1rem 0;
+}
+
+#interface h2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 1rem;
+}
+
+#interface .descricao {
+  margin-bottom: 0.5rem;
+}
+
+#interface > * {
+  max-width: 100%;
+}
+
+#interface .controle { 
+  margin-bottom: 1rem;
+}
+
+#interface .controle p { 
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+/* #interface *:last-child {
+  margin-bottom: 0.3rem;
+} */
+
+#interface .radio label {
+  display: flex;
+  align-items: center;
+}
+
+#interface .radio label input {
+  
+  width: auto;
+}
+
+input, button, select {
+  font-family: "IBM Plex Mono", monospace, sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.2em;
+  width: 100%;
+}
+
+select { 
+  text-align: left;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.5em;
+}
+
+#interface .controle > div {
+  /* display: flex; */
+}
+
