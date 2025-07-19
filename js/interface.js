@@ -83,8 +83,8 @@ function interface_inicializar() {
   select_efeitos.option("Simples: Desvio");
   select_efeitos.option("Simples: Desenrolar");
   select_efeitos.option("Simples: Deslizar");
-  select_efeitos.option("Simples: Deslizar 2");
-  select_efeitos.selected("Simples: Aleatório 3");
+  // select_efeitos.option("Simples: Deslizar 2");
+  select_efeitos.selected("Simples: Deslizar");
   int_anexa(container_interface, select_efeitos.elt);
 
   int_anexa_divisor(container_interface);

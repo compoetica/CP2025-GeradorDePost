@@ -14,8 +14,13 @@ function handleFile(f, campo) {
     console.log(f.data);
     texto_A = f.data;
     const regex = /(\r\n|\n|\r)/g;
-    texto_A_1D = texto_A.replace(regex, "");
     texto_A = split(texto_A, "\n");
+    texto_A_1D = "";
+    for(let i = 0; i < texto_A.length; i++) {
+      for(let j = 0; j < coluna_tamanho; j++) {
+        texto_A_1D = j <= texto_A.length ? texto_A[j] : " ";
+      }
+    }
     
   }
   if (f.type === 'text' && campo == "B") {
