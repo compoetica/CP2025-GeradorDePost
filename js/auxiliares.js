@@ -13,21 +13,20 @@ function handleFile(f, campo) {
   if (f.type === 'text' && campo == "A") {
     console.log(f.data);
     texto_A = f.data;
-    const regex = /(\r\n|\n|\r)/g;
-    texto_A = split(texto_A, "\n");
-    texto_A_1D = "";
-    for(let i = 0; i < texto_A.length; i++) {
-      for(let j = 0; j < coluna_tamanho; j++) {
-        texto_A_1D = j <= texto_A.length ? texto_A[j] : " ";
-      }
-    }
+    texto_A = texto_A.split(/\r?\n/);
+    
+    // for(let i = 0; i < texto_A.length; i++) {
+    //   for(let j = 0; j < coluna_tamanho; j++) {
+    //     texto_A_1D = j <= texto_A.length ? texto_A[j] : " ";
+    //   }
+    // }
     
   }
   if (f.type === 'text' && campo == "B") {
     console.log(f.data);
     texto_B = f.data;
-    texto_B_1D = texto_B.replace(/(\r\n|\n|\r)/g, "");
-    texto_B = split(texto_B, "\n");
+    texto_B = texto_B.split(/\r?\n/);
+    // texto_B_1D = texto_B.replace(/(\r\n|\n|\r)/g, "");
   }
 }
 
