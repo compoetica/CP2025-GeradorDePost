@@ -11,22 +11,12 @@ function handleFile(f, campo) {
     mascara = loadImage(f.data);
   }
   if (f.type === 'text' && campo == "A") {
-    console.log(f.data);
     texto_A = f.data;
     texto_A = texto_A.split(/\r?\n/);
-    
-    // for(let i = 0; i < texto_A.length; i++) {
-    //   for(let j = 0; j < coluna_tamanho; j++) {
-    //     texto_A_1D = j <= texto_A.length ? texto_A[j] : " ";
-    //   }
-    // }
-    
   }
   if (f.type === 'text' && campo == "B") {
-    console.log(f.data);
     texto_B = f.data;
     texto_B = texto_B.split(/\r?\n/);
-    // texto_B_1D = texto_B.replace(/(\r\n|\n|\r)/g, "");
   }
 }
 
@@ -121,6 +111,12 @@ function atualizar_paleta() {
       cor_fundo = paleta.cinza_claro;        
       break;
   }
+  if(formato == "4x5") {
+    mascara = mascara.formato_4x5;
+  }
+  if(formato == "16x9") {
+    mascara = mascara.formato_16x9;
+  }
 }
 
 function atualizar_modo() {
@@ -131,6 +127,10 @@ function atualizar_modo() {
   if(modo_selecionado == "Animado") {
     animacao = true;
   }
+}
+
+function atualizar_animacao() {
+  animacao = !animacao;
 }
 
 function atualizar_animacao_dados() {
@@ -147,4 +147,44 @@ function atualizar_animacao_dados() {
 
   animacao_frame_total = animacao_saida_espera_chave;
 
+}
+
+function atualizar_formato() {
+  let formato_selecionado = select_formato.value();
+  formato = formato_selecionado;
+  if(formato_selecionado == "4x5") {
+    resizeCanvas(1080,1350);
+  }
+  if(formato_selecionado == "16x9") {
+    resizeCanvas(1920,1080);
+  }
+  atualizar_paleta();
+  atualizar_pagina();
+}
+
+function atualizar_pagina() {
+  if(formato == "4x5") {
+    coluna_tamanho = pagina.formato_4x5.coluna_tamanho;
+    linha_tamanho = pagina.formato_4x5.linha_tamanho;
+    margem = pagina.formato_4x5.margem;
+    coluna_largura = width / coluna_tamanho * 0.993;
+    linha_altura = (height - margem.y * 2) / linha_tamanho * 0.994;
+    fonte_tamanho = linha_altura * 0.83;
+    texto_A = texto_A_base_4x5;
+    texto_B = texto_B_base_4x5;
+
+  }
+
+  if(formato == "16x9") {
+    coluna_tamanho = pagina.formato_16x9.coluna_tamanho;
+    linha_tamanho = pagina.formato_16x9.linha_tamanho;
+    margem = pagina.formato_16x9.margem;
+    coluna_largura = width / coluna_tamanho * 0.997;
+    linha_altura = 34.3;
+    fonte_tamanho = 30;
+    texto_A = texto_A_base_16x9;
+    texto_B = texto_B_base_16x9;
+  }
+  
+  
 }

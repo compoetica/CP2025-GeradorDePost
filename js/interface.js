@@ -3,6 +3,7 @@ let input_mascara;
 let input_texto_A;
 let input_texto_B;
 
+let select_formato;
 let select_paleta;
 let select_modo;
 let select_efeitos;
@@ -17,6 +18,7 @@ let input_saida_espera_duracao;
 
 let btn_salvar;
 let btn_gravar;
+let btn_play;
 
 let label_arquivo;
 
@@ -27,8 +29,26 @@ function interface_inicializar() {
   // input_mascara = createFileInput(handleFile);
   // int_anexa(container_interface, input_mascara.elt, "Mascara");
 
-  int_anexa_titulo(container_interface, "Arquivos");
-  int_anexa_descricao(container_interface, "Suba arquivos de texto com 60 colunas x 33 linhas.");
+  int_anexa_titulo(container_interface, "Arquivos e Formato");
+  int_anexa_descricao(
+    container_interface, 
+    `
+    Suba arquivos de textos com:
+    <ul>
+    <li>4x5: 60 colunas x 33 linhas</li>
+    <li>16x9: 107 colunas x 27 linhas</li>
+    </ul>
+    `
+  );
+
+  select_formato = createSelect();
+  select_formato.class('select');
+  select_formato.option("4x5");
+  select_formato.option("16x9");
+  select_formato.selected('4x5');
+  select_formato.changed(atualizar_formato);
+  int_anexa(container_interface, select_formato.elt, "Formato");
+
 
   input_texto_A = createFileInput((f) => (handleFile(f, "A")));
   int_anexa(container_interface, input_texto_A.elt, "Texto A");
@@ -117,6 +137,10 @@ function interface_inicializar() {
   input_saida_espera_duracao.attribute('min', '0');
   int_anexa(container_interface, input_saida_espera_duracao.elt, "Pausa B");
 
+  btn_play = createButton("Play & Pause");
+  btn_play.mousePressed(atualizar_animacao);
+  int_anexa(container_interface, btn_play.elt);
+
   int_anexa_divisor(container_interface);
 
   btn_salvar = createButton("Salvar PNG");
@@ -160,6 +184,6 @@ function int_anexa_titulo(interface_container, titulo) {
 function int_anexa_descricao(interface_container, texto) {
   let descricao_elt = document.createElement("p");
   descricao_elt.classList.add("descricao");
-  descricao_elt.innerText = texto;
+  descricao_elt.innerHTML = texto;
   interface_container.appendChild(descricao_elt);
 }
