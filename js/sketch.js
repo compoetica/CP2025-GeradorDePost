@@ -164,41 +164,33 @@ function draw() {
   if (animacao) {
     // animado_aleatorio(texto, tempo);
 
-    switch (animacao_estado) {
-      case "entrada":
-
-        intensidade = map(animacao_frame_atual, 0, animacao_entrada_duracao, 0, 1);
-        animacao_estado = animacao_frame_atual > animacao_entrada_chave ? "espera" : "entrada";
-
-        break;
-
-      case "espera":
-
-        intensidade = 1;
-        animacao_estado = animacao_frame_atual > animacao_espera_chave ? "saida" : "espera";
-
-        break;
-
-      case "saida":
-
-        intensidade = map(animacao_frame_atual, animacao_espera_chave, animacao_saida_chave, 1, 0);
-        animacao_estado = animacao_frame_atual > animacao_saida_chave ? "saida_espera" : "saida";
-        
-        break;
-
-      case "saida_espera":
-
-        intensidade = 0;
-        if (animacao_frame_atual > animacao_saida_espera_chave) {
-          animacao_estado = "entrada";
-          animacao_frame_atual = 0;
-        }
-
-        break;
+    if( animacao_estado == "entrada") {
+      intensidade = map(animacao_frame_atual, 0, animacao_entrada_duracao, 0, 1);
+      animacao_estado = animacao_frame_atual > animacao_entrada_chave ? "espera" : "entrada";
     }
+
+    if( animacao_estado =="espera"){
+      intensidade = 1;
+      animacao_estado = animacao_frame_atual > animacao_espera_chave ? "saida" : "espera";
+    }
+
+    if( animacao_estado == "saida"){
+      intensidade = map(animacao_frame_atual, animacao_espera_chave, animacao_saida_chave, 1, 0);
+      animacao_estado = animacao_frame_atual > animacao_saida_chave ? "saida_espera" : "saida";
+    }
+
+    if( animacao_estado =="saida_espera"){
+      intensidade = 0;
+      if (animacao_frame_atual > animacao_saida_espera_chave) {
+        animacao_estado = "entrada";
+        animacao_frame_atual = 0;
+      }
+    }
+
     if(animacao_frame_total > 0) {
       animacao_frame_atual++;
     }
+    
   } else {
     intensidade = slider_intensidade.value();
     animacao_frame_atual = slider_tempo.value();
