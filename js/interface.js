@@ -26,9 +26,6 @@ function interface_inicializar() {
 
   container_interface = document.getElementById("interface");
 
-  // input_mascara = createFileInput(handleFile);
-  // int_anexa(container_interface, input_mascara.elt, "Mascara");
-
   int_anexa_titulo(container_interface, "Arquivos e Formato");
   int_anexa_descricao(
     container_interface, 
@@ -55,6 +52,9 @@ function interface_inicializar() {
 
   input_texto_B = createFileInput((f) => (handleFile(f, "B")));
   int_anexa(container_interface, input_texto_B.elt, "Texto B");
+
+  input_mascara = createFileInput((f) => (handleFile(f, "img")));
+  int_anexa(container_interface, input_mascara.elt, "Mascara");
 
   int_anexa_divisor(container_interface);
   int_anexa_titulo(container_interface, "Paletas");
