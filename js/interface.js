@@ -83,6 +83,7 @@ function interface_inicializar() {
   select_modo.class('select');
   select_modo.option("Estático");
   select_modo.option("Animado");
+  select_modo.option("Contínuo");
   select_modo.selected("Animado");
   select_modo.changed(atualizar_modo);
   int_anexa(container_interface, select_modo.elt);

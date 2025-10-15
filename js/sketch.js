@@ -77,6 +77,7 @@ let animacao_frame_total;
 let animacao_frame_atual = 0;
 
 let formato;
+let modo;
 
 // Capture
 let capture;
@@ -139,6 +140,7 @@ function setup() {
 
   atualizar_animacao_dados();
 
+  modo = select_modo.value();
 }
 
 function draw() {
@@ -161,7 +163,7 @@ function draw() {
 
   let intensidade;
 
-  if (animacao) {
+  if (animacao && modo == "Animado") {
     // animado_aleatorio(texto, tempo);
 
     if( animacao_estado == "entrada") {
@@ -191,9 +193,16 @@ function draw() {
       animacao_frame_atual++;
     }
     
-  } else {
+  } 
+  
+  if (modo == "Estático") {
     intensidade = slider_intensidade.value();
     animacao_frame_atual = slider_tempo.value();
+  }
+
+  if (modo == "Contínuo") {
+    intensidade = slider_intensidade.value();
+    animacao_frame_atual++;
   }
   
   switch (select_efeitos.value()) {

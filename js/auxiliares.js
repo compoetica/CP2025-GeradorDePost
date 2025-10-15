@@ -120,13 +120,13 @@ function atualizar_paleta() {
 }
 
 function atualizar_modo() {
-  let modo_selecionado = select_modo.value();
-  if(modo_selecionado == "Estático") {
-    animacao = false;
-  }
-  if(modo_selecionado == "Animado") {
-    animacao = true;
-  }
+  modo = select_modo.value();
+  // if(modo_selecionado == "Estático") {
+  //   animacao = false;
+  // }
+  // if(modo_selecionado == "Animado") {
+  //   animacao = true;
+  // }
 }
 
 function atualizar_animacao() {
