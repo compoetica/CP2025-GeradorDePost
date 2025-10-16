@@ -38,6 +38,7 @@ let texto_B_base_4x5;
 let texto_A_base_16x9;
 let texto_B_base_16x9;
 let mascara;
+let efeito_texto = "----------- EM BREVE " // "-----------COMPOÉTICA"
 
 let pagina = {
   formato_4x5: {
@@ -86,6 +87,7 @@ let capture_estado_gravando;
 
 P5Capture.setDefaultOptions({
   disableUi: true,
+  verbose: true,
 });
 
 let debug = false;
@@ -125,8 +127,8 @@ function setup() {
   
   atualizar_pagina();
 
-  texto_A_1D = concatenar_linhas(texto_A);
-  texto_B_1D = concatenar_linhas(texto_B);
+  // texto_A_1D = concatenar_linhas(texto_A);
+  // texto_B_1D = concatenar_linhas(texto_B);
   
   colorMode(RGB);
   noStroke();

@@ -117,7 +117,8 @@ function animado_aleatorio_1(txt, intensidade, t) {
 
 
 function animado_aleatorio_2(txt, intensidade, t) {
-  let caracteres_aleatorios = "-----------COMPOÉTICA";
+  // let caracteres_aleatorios = "-----------COMPOÉTICA";
+  let caracteres_aleatorios = efeito_texto;
   for (let j = 0; j < linha_tamanho; j++) {
     for (let i = 0; i < coluna_tamanho; i++) {
       let index = i + j * coluna_tamanho;

@@ -23,7 +23,7 @@ function handleFile(f, campo) {
 function concatenar_linhas(a) {
   let b = "";
   for(let i = 0; i < a.length; i++) {
-    console.log(a[i]);
+    // console.log(a[i]);
     b += a[i];
   }
   return b;
@@ -51,6 +51,25 @@ function salvar_webm() {
     capture.start({
       format: "mp4",
       bitrate: 8000,
+      framerate: animacao_framerate,
+      duration: animacao_frame_total,
+      verbose: true
+    });
+  } else {
+    capture.stop();
+    // gravacaoRetorno.classList.remove('gravando');
+  }
+}
+
+function salvar_sequencia_png() {
+  if (capture.state === "idle") {
+    animacao_frame_atual = 0;
+    animacao_estado = "entrada";
+    capture_estado_gravando = true;
+    
+    // gravacaoRetorno.classList.add('gravando');
+    capture.start({
+      format: "png",
       framerate: animacao_framerate,
       duration: animacao_frame_total,
       verbose: true

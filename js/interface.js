@@ -18,6 +18,7 @@ let input_saida_espera_duracao;
 
 let btn_salvar;
 let btn_gravar;
+let btn_gravar_png;
 let btn_play;
 
 let label_arquivo;
@@ -144,13 +145,17 @@ function interface_inicializar() {
 
   int_anexa_divisor(container_interface);
 
-  btn_salvar = createButton("Salvar PNG");
+  btn_salvar = createButton("Salvar Imagem - PNG");
   btn_salvar.mousePressed(salvar_png);
   int_anexa(container_interface, btn_salvar.elt);
 
-  btn_gravar = createButton("Salvar MP4");
+  btn_gravar = createButton("Salvar Video - MP4");
   btn_gravar.mousePressed(salvar_webm);
   int_anexa(container_interface, btn_gravar.elt);
+
+  btn_gravar_png = createButton("Salvar Video - PNG");
+  btn_gravar_png.mousePressed(salvar_sequencia_png);
+  int_anexa(container_interface, btn_gravar_png.elt);
 
  }
 
