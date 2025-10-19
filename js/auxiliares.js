@@ -46,8 +46,7 @@ function salvar_webm() {
     animacao_frame_atual = 0;
     animacao_estado = "entrada";
     capture_estado_gravando = true;
-    
-    // gravacaoRetorno.classList.add('gravando');
+
     capture.start({
       format: "mp4",
       bitrate: 8000,
@@ -57,7 +56,6 @@ function salvar_webm() {
     });
   } else {
     capture.stop();
-    // gravacaoRetorno.classList.remove('gravando');
   }
 }
 
@@ -65,9 +63,8 @@ function salvar_sequencia_png() {
   if (capture.state === "idle") {
     animacao_frame_atual = 0;
     animacao_estado = "entrada";
-    capture_estado_gravando = true;
-    
-    // gravacaoRetorno.classList.add('gravando');
+    capture_estado_gravando = true; 
+
     capture.start({
       format: "png",
       framerate: animacao_framerate,
@@ -76,7 +73,6 @@ function salvar_sequencia_png() {
     });
   } else {
     capture.stop();
-    // gravacaoRetorno.classList.remove('gravando');
   }
 }
 
@@ -140,12 +136,6 @@ function atualizar_paleta() {
 
 function atualizar_modo() {
   modo = select_modo.value();
-  // if(modo_selecionado == "Estático") {
-  //   animacao = false;
-  // }
-  // if(modo_selecionado == "Animado") {
-  //   animacao = true;
-  // }
 }
 
 function atualizar_animacao() {

@@ -250,4 +250,7 @@ function draw() {
     text(animacao_log, 0, 0);
     // grid();
   }
+
+  status_frame_atual.elt.innerText = `Frame atual: ${String(animacao_frame_atual).padStart(4, '0')} / ${String(animacao_frame_total).padStart(4, '0')}`;
+
 }

@@ -22,6 +22,9 @@ let btn_gravar_png;
 let btn_play;
 
 let label_arquivo;
+let status_animacao;
+let status_gravacao;
+let status_frame_atual;
 
 function interface_inicializar() {
 
@@ -156,6 +159,14 @@ function interface_inicializar() {
   btn_gravar_png = createButton("Salvar Video - PNG");
   btn_gravar_png.mousePressed(salvar_sequencia_png);
   int_anexa(container_interface, btn_gravar_png.elt);
+
+  int_anexa_divisor(container_interface);
+
+  // status_animacao = createP("Gravando: Não");
+  // int_anexa(container_interface, status_animacao.elt);
+
+  status_frame_atual = createP("Frame Atual: ");
+  int_anexa(container_interface, status_frame_atual.elt);
 
  }
 
