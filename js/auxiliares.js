@@ -8,7 +8,7 @@ function arquivo_nome() {
 
 function handleFile(f, campo) {
   if (f.type === 'image') {
-    mascara = loadImage(f.data);
+    mascara_personalizada = loadImage(f.data);
   }
   if (f.type === 'text' && campo == "A") {
     texto_A = f.data;
@@ -23,7 +23,7 @@ function handleFile(f, campo) {
 function concatenar_linhas(a) {
   let b = "";
   for(let i = 0; i < a.length; i++) {
-    console.log(a[i]);
+    // console.log(a[i]);
     b += a[i];
   }
   return b;
@@ -46,8 +46,7 @@ function salvar_webm() {
     animacao_frame_atual = 0;
     animacao_estado = "entrada";
     capture_estado_gravando = true;
-    
-    // gravacaoRetorno.classList.add('gravando');
+
     capture.start({
       format: "mp4",
       bitrate: 8000,
@@ -57,7 +56,23 @@ function salvar_webm() {
     });
   } else {
     capture.stop();
-    // gravacaoRetorno.classList.remove('gravando');
+  }
+}
+
+function salvar_sequencia_png() {
+  if (capture.state === "idle") {
+    animacao_frame_atual = 0;
+    animacao_estado = "entrada";
+    capture_estado_gravando = true; 
+
+    capture.start({
+      format: "png",
+      framerate: animacao_framerate,
+      duration: animacao_frame_total,
+      verbose: true
+    });
+  } else {
+    capture.stop();
   }
 }
 
@@ -120,13 +135,7 @@ function atualizar_paleta() {
 }
 
 function atualizar_modo() {
-  let modo_selecionado = select_modo.value();
-  if(modo_selecionado == "Estático") {
-    animacao = false;
-  }
-  if(modo_selecionado == "Animado") {
-    animacao = true;
-  }
+  modo = select_modo.value();
 }
 
 function atualizar_animacao() {
@@ -185,6 +194,8 @@ function atualizar_pagina() {
     texto_A = texto_A_base_16x9;
     texto_B = texto_B_base_16x9;
   }
-  
+}
+
+function atualizar_mascara_modo() {
   
 }

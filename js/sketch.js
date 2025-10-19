@@ -38,6 +38,9 @@ let texto_B_base_4x5;
 let texto_A_base_16x9;
 let texto_B_base_16x9;
 let mascara;
+let mascara_personalizada;
+let mascara_modo;
+let efeito_texto = "----------- EM BREVE " // "-----------COMPOÉTICA"
 
 let pagina = {
   formato_4x5: {
@@ -77,6 +80,7 @@ let animacao_frame_total;
 let animacao_frame_atual = 0;
 
 let formato;
+let modo;
 
 // Capture
 let capture;
@@ -85,6 +89,7 @@ let capture_estado_gravando;
 
 P5Capture.setDefaultOptions({
   disableUi: true,
+  verbose: true,
 });
 
 let debug = false;
@@ -124,8 +129,8 @@ function setup() {
   
   atualizar_pagina();
 
-  texto_A_1D = concatenar_linhas(texto_A);
-  texto_B_1D = concatenar_linhas(texto_B);
+  // texto_A_1D = concatenar_linhas(texto_A);
+  // texto_B_1D = concatenar_linhas(texto_B);
   
   colorMode(RGB);
   noStroke();
@@ -139,6 +144,9 @@ function setup() {
 
   atualizar_animacao_dados();
 
+  modo = select_modo.value();
+
+  mascara_personalizada = mascara;
 }
 
 function draw() {
@@ -150,58 +158,58 @@ function draw() {
 
   randomSeed(0);
   noiseSeed(0);
-  image(mascara, 0, 0, width, height);
+  
 
   noStroke();
   textFont(fonte);
   textSize(fonte_tamanho);
   textAlign(LEFT, TOP);
 
+  push();
   translate(margem.x, margem.y);
 
   let intensidade;
 
-  if (animacao) {
+  if (animacao && modo == "Animado") {
     // animado_aleatorio(texto, tempo);
 
-    switch (animacao_estado) {
-      case "entrada":
-
-        intensidade = map(animacao_frame_atual, 0, animacao_entrada_duracao, 0, 1);
-        animacao_estado = animacao_frame_atual > animacao_entrada_chave ? "espera" : "entrada";
-
-        break;
-
-      case "espera":
-
-        intensidade = 1;
-        animacao_estado = animacao_frame_atual > animacao_espera_chave ? "saida" : "espera";
-
-        break;
-
-      case "saida":
-
-        intensidade = map(animacao_frame_atual, animacao_espera_chave, animacao_saida_chave, 1, 0);
-        animacao_estado = animacao_frame_atual > animacao_saida_chave ? "saida_espera" : "saida";
-        
-        break;
-
-      case "saida_espera":
-
-        intensidade = 0;
-        if (animacao_frame_atual > animacao_saida_espera_chave) {
-          animacao_estado = "entrada";
-          animacao_frame_atual = 0;
-        }
-
-        break;
+    if( animacao_estado == "entrada") {
+      intensidade = map(animacao_frame_atual, 0, animacao_entrada_duracao, 0, 1);
+      animacao_estado = animacao_frame_atual > animacao_entrada_chave ? "espera" : "entrada";
     }
+
+    if( animacao_estado =="espera"){
+      intensidade = 1;
+      animacao_estado = animacao_frame_atual > animacao_espera_chave ? "saida" : "espera";
+    }
+
+    if( animacao_estado == "saida"){
+      intensidade = map(animacao_frame_atual, animacao_espera_chave, animacao_saida_chave, 1, 0);
+      animacao_estado = animacao_frame_atual > animacao_saida_chave ? "saida_espera" : "saida";
+    }
+
+    if( animacao_estado =="saida_espera"){
+      intensidade = 0;
+      if (animacao_frame_atual > animacao_saida_espera_chave) {
+        animacao_estado = "entrada";
+        animacao_frame_atual = 0;
+      }
+    }
+
     if(animacao_frame_total > 0) {
       animacao_frame_atual++;
     }
-  } else {
+    
+  } 
+  
+  if (modo == "Estático") {
     intensidade = slider_intensidade.value();
     animacao_frame_atual = slider_tempo.value();
+  }
+
+  if (modo == "Contínuo") {
+    intensidade = slider_intensidade.value();
+    animacao_frame_atual++;
   }
   
   switch (select_efeitos.value()) {
@@ -240,6 +248,14 @@ function draw() {
       animado_deslizar_2(texto_A_1D, intensidade, animacao_frame_atual);
       break;
   }
+
+  pop();
+
+  if(check_mascara_personalizada.checked()) {
+    image(mascara_personalizada, 0, 0, width, height);
+  } else {
+    image(mascara, 0, 0, width, height);
+  }
   
   if (debug) {
     let animacao_log = `Frame: ${animacao_frame_atual} - Estado: ${animacao_estado}`;
@@ -247,4 +263,7 @@ function draw() {
     text(animacao_log, 0, 0);
     // grid();
   }
+
+  status_frame_atual.elt.innerText = `Frame atual: ${String(animacao_frame_atual).padStart(4, '0')} / ${String(animacao_frame_total).padStart(4, '0')}`;
+
 }

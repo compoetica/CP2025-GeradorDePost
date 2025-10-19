@@ -2,6 +2,7 @@ let container_interface;
 let input_mascara;
 let input_texto_A;
 let input_texto_B;
+let check_mascara_personalizada;
 
 let select_formato;
 let select_paleta;
@@ -18,16 +19,17 @@ let input_saida_espera_duracao;
 
 let btn_salvar;
 let btn_gravar;
+let btn_gravar_png;
 let btn_play;
 
 let label_arquivo;
+let status_animacao;
+let status_gravacao;
+let status_frame_atual;
 
 function interface_inicializar() {
 
   container_interface = document.getElementById("interface");
-
-  // input_mascara = createFileInput(handleFile);
-  // int_anexa(container_interface, input_mascara.elt, "Mascara");
 
   int_anexa_titulo(container_interface, "Arquivos e Formato");
   int_anexa_descricao(
@@ -56,6 +58,12 @@ function interface_inicializar() {
   input_texto_B = createFileInput((f) => (handleFile(f, "B")));
   int_anexa(container_interface, input_texto_B.elt, "Texto B");
 
+  input_mascara = createFileInput((f) => (handleFile(f, "img")));
+  int_anexa(container_interface, input_mascara.elt, "Mascara");
+
+  check_mascara_personalizada = createCheckbox();
+  int_anexa(container_interface, check_mascara_personalizada.elt, "Ativar máscara personalizada");
+
   int_anexa_divisor(container_interface);
   int_anexa_titulo(container_interface, "Paletas");
   int_anexa_descricao(container_interface, "Cor do texto e fundo.");
@@ -83,6 +91,7 @@ function interface_inicializar() {
   select_modo.class('select');
   select_modo.option("Estático");
   select_modo.option("Animado");
+  select_modo.option("Contínuo");
   select_modo.selected("Animado");
   select_modo.changed(atualizar_modo);
   int_anexa(container_interface, select_modo.elt);
@@ -143,13 +152,25 @@ function interface_inicializar() {
 
   int_anexa_divisor(container_interface);
 
-  btn_salvar = createButton("Salvar PNG");
+  btn_salvar = createButton("Salvar Imagem - PNG");
   btn_salvar.mousePressed(salvar_png);
   int_anexa(container_interface, btn_salvar.elt);
 
-  btn_gravar = createButton("Salvar MP4");
+  btn_gravar = createButton("Salvar Video - MP4");
   btn_gravar.mousePressed(salvar_webm);
   int_anexa(container_interface, btn_gravar.elt);
+
+  btn_gravar_png = createButton("Salvar Video - PNG");
+  btn_gravar_png.mousePressed(salvar_sequencia_png);
+  int_anexa(container_interface, btn_gravar_png.elt);
+
+  int_anexa_divisor(container_interface);
+
+  // status_animacao = createP("Gravando: Não");
+  // int_anexa(container_interface, status_animacao.elt);
+
+  status_frame_atual = createP("Frame Atual: ");
+  int_anexa(container_interface, status_frame_atual.elt);
 
  }
 

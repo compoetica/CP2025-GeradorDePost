@@ -78,8 +78,6 @@ function animado_mistura_vertical(txt_a, txt_b, intensidade, t) {
 
 function animado_noise(txt, intensidade, t) {
   let caracteres_aleatorios = "@#$%&1234567890?()><:!=*+-";
-  // let caracteres_aleatorios = "COMPOÉTICA";
-  // let intensidade = map(mouseX, 0, width, 0, 1);
   for (let j = 0; j < linha_tamanho; j++) {
     for (let i = 0; i < coluna_tamanho; i++) {
       let x = coluna_largura * i;
@@ -119,7 +117,8 @@ function animado_aleatorio_1(txt, intensidade, t) {
 
 
 function animado_aleatorio_2(txt, intensidade, t) {
-  let caracteres_aleatorios = "COMPOÉTICA";
+  // let caracteres_aleatorios = "-----------COMPOÉTICA";
+  let caracteres_aleatorios = efeito_texto;
   for (let j = 0; j < linha_tamanho; j++) {
     for (let i = 0; i < coluna_tamanho; i++) {
       let index = i + j * coluna_tamanho;
@@ -129,7 +128,7 @@ function animado_aleatorio_2(txt, intensidade, t) {
         text(txt[j][i], x, y);
       } else {
         let c_qtd = caracteres_aleatorios.length;
-        let c = (abs(index - t))% c_qtd;
+        let c = (index + t) % c_qtd;
         text(caracteres_aleatorios[c], x, y);
       }
     }
