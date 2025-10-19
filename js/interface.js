@@ -2,6 +2,7 @@ let container_interface;
 let input_mascara;
 let input_texto_A;
 let input_texto_B;
+let check_mascara_personalizada;
 
 let select_formato;
 let select_paleta;
@@ -59,6 +60,9 @@ function interface_inicializar() {
 
   input_mascara = createFileInput((f) => (handleFile(f, "img")));
   int_anexa(container_interface, input_mascara.elt, "Mascara");
+
+  check_mascara_personalizada = createCheckbox();
+  int_anexa(container_interface, check_mascara_personalizada.elt, "Ativar máscara personalizada");
 
   int_anexa_divisor(container_interface);
   int_anexa_titulo(container_interface, "Paletas");

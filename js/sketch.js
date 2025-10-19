@@ -38,6 +38,8 @@ let texto_B_base_4x5;
 let texto_A_base_16x9;
 let texto_B_base_16x9;
 let mascara;
+let mascara_personalizada;
+let mascara_modo;
 let efeito_texto = "----------- EM BREVE " // "-----------COMPOÉTICA"
 
 let pagina = {
@@ -143,6 +145,8 @@ function setup() {
   atualizar_animacao_dados();
 
   modo = select_modo.value();
+
+  mascara_personalizada = mascara;
 }
 
 function draw() {
@@ -154,13 +158,14 @@ function draw() {
 
   randomSeed(0);
   noiseSeed(0);
-  image(mascara, 0, 0, width, height);
+  
 
   noStroke();
   textFont(fonte);
   textSize(fonte_tamanho);
   textAlign(LEFT, TOP);
 
+  push();
   translate(margem.x, margem.y);
 
   let intensidade;
@@ -242,6 +247,14 @@ function draw() {
     case "Simples: Deslizar 2":
       animado_deslizar_2(texto_A_1D, intensidade, animacao_frame_atual);
       break;
+  }
+
+  pop();
+
+  if(check_mascara_personalizada.checked()) {
+    image(mascara_personalizada, 0, 0, width, height);
+  } else {
+    image(mascara, 0, 0, width, height);
   }
   
   if (debug) {

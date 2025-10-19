@@ -8,7 +8,7 @@ function arquivo_nome() {
 
 function handleFile(f, campo) {
   if (f.type === 'image') {
-    mascara = loadImage(f.data);
+    mascara_personalizada = loadImage(f.data);
   }
   if (f.type === 'text' && campo == "A") {
     texto_A = f.data;
@@ -194,6 +194,8 @@ function atualizar_pagina() {
     texto_A = texto_A_base_16x9;
     texto_B = texto_B_base_16x9;
   }
-  
+}
+
+function atualizar_mascara_modo() {
   
 }
